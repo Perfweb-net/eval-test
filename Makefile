@@ -17,6 +17,6 @@ clean:
 	rm -rf .pytest_cache htmlcov
 
 lint:
-	python -m py_compile src/task_manager/*.py
+	python3 -m py_compile src/task_manager/*.py
 
 all: install lint test coverage 

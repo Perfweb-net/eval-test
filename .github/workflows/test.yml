@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Run all checks (lint, test, coverage)
+        run: make all
+
       - name: Run tests
         run: pytest
 
