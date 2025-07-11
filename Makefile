@@ -19,4 +19,4 @@ clean:
 lint:
 	python3 -m py_compile src/task_manager/*.py
 
-all: install lint test coverage 
+all: install lint test coverage
