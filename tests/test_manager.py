@@ -160,3 +160,10 @@ class TestTaskManagerPersistence:
         new_manager = TaskManager(str(file_path))
         new_manager.load_from_file()
         assert len(new_manager.tasks) == len(self.manager.tasks) 
+
+def test_save_and_load_empty_tasks(tmp_path):
+    file_path = tmp_path / "empty.json"
+    manager = TaskManager(str(file_path))
+    manager.save_to_file()
+    manager.load_from_file()
+    assert manager.tasks == [] 

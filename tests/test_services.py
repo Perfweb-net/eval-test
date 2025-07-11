@@ -88,4 +88,25 @@ class TestReportService:
     @patch('builtins.open', side_effect=Exception("fail"))
     def test_export_tasks_csv_raises_ioerror(self, mock_file):
         with pytest.raises(IOError):
-            self.report_service.export_tasks_csv(self.tasks, "test.csv") 
+            self.report_service.export_tasks_csv(self.tasks, "test.csv")
+
+def test_email_service_init():
+    service = EmailService("smtp.test.com", 123)
+    assert service.smtp_server == "smtp.test.com"
+    assert service.port == 123
+
+def test_report_service_init():
+    service = ReportService()
+    assert isinstance(service, ReportService)
+
+def test_generate_daily_report_task_without_priority_status():
+    class Dummy: pass
+    dummy = Dummy()
+    report = ReportService().generate_daily_report([dummy])
+    assert report["total"] == 1
+    assert report["completed"] == 0
+
+def test_export_tasks_csv_empty(tmp_path):
+    file_path = tmp_path / "empty.csv"
+    ReportService().export_tasks_csv([], str(file_path))
+    assert file_path.exists() 
