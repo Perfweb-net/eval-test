@@ -18,11 +18,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run unit tests
-        run: pytest -m unit
-
-      - name: Run integration tests
-        run: pytest -m integration
+      - name: Run tests
+        run: pytest
 
       - name: Run coverage
         run: pytest --cov=src/task_manager --cov-report=html --cov-report=term-missing 
